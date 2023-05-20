@@ -8,13 +8,16 @@ class LoginPage(BasePage):
     PASSWORD_INPUT = (By.ID, "pass")
     INTRA_IN_CONT_BTN = (By.ID, "send2")
     INVALID_MAIL_OR_PASS_MSG = (By.XPATH, '//li[@class="error-msg"]//child::ul//child::li//child::span')
-    EMPTY_PASS_MSG = (By.ID, "advice-required-entry-pass")
+    EMPTY_FIELD_MSG = (By.XPATH, '//div[contains(text(), "Camp obligatoriu")]')
     URL = "https://www.zonia.ro/customer/account/login"
+    FORGOT_PASS_LINK = (By.XPATH, '//a[@class="f-left"]')
 
-    # aici nu va mai functiona daca sterg linia 16 si decomentez linia 17?
     def navigate_to_page(self):
         self.driver.get('https://www.zonia.ro/customer/account/login')
         # self.driver.get(self.URL)
+
+    def verify_login_page(self, expected_page_url):
+        self.verify_page_url(expected_page_url)
 
     def insert_username(self, email):
         self.wait_and_fill_elem_by_selector(*self.EMAIL_INPUT, email)
@@ -29,10 +32,9 @@ class LoginPage(BasePage):
         actual_error_message = self.driver.find_element(*self.INVALID_MAIL_OR_PASS_MSG).text
         assert error_message == actual_error_message, f"Message is invalid. Expected: {error_message}, actual: {actual_error_message}"
 
-    # e ok daca fac o metoda noua? sau ma puteam folosi de cea de sus doar prin schimbarea constantei? CUM?
     def check_error_message_for_empty_field(self, error_message):
-        actual_error_message = self.driver.find_element(*self.EMPTY_PASS_MSG).text
+        actual_error_message = self.driver.find_element(*self.EMPTY_FIELD_MSG).text
         assert error_message == actual_error_message, f"Message is invalid. Expected: {error_message}, actual: {actual_error_message}"
 
-    def get_empty_pass_msg(self):
-        return self.driver.find_element(*self.EMPTY_PASS_MSG).text
+    def click_forgot_pass_link(self):
+        self.wait_and_click_elem_by_selector(*self.FORGOT_PASS_LINK)

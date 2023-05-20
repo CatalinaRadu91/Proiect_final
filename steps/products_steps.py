@@ -1,14 +1,14 @@
 from behave import *
 
 
-@when('products: I click on product name "Rochie Madeira Rosie"')
-def step_impl(context):
-    context.products_page.select_product_by_name("Rochie Madeira Rosie")
+@when('products: I click on product name "{product_name}"')
+def step_impl(context, product_name):
+    context.products_page.select_product_by_name(product_name)
 
 
-@when('products: I select size for the product and I add it to basket')
+@when('products: I select size " XL " for the product and I add it to basket')
 def step_impl(context):
-    context.products_page.select_size_S()
+    context.products_page.select_size_XL()
     context.products_page.add_product_to_basket()
 
 

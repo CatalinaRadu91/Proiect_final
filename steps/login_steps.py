@@ -28,17 +28,29 @@ def step_impl(context, error_message):
     context.login_page.check_error_message(error_message)
 
 
-@when('login: I insert email "<email>" and I do not fill in the password field')
-def step_impl(context, email):
+@when('login: user enters {email} and {password}')
+def step_impl(context, email, password):
+    if password == 'empty': password = ""
+    if email == 'empty': email = ""
     context.login_page.insert_username(email)
+    context.login_page.insert_password(password)
 
 
-# @then('login: I get the error message "Camp obligatoriu"')
-# def step_impl(context, error_message):
-#     context.login_page.check_error_message_for_empty_field(error_message)
+@then('login: I get the error message for empty field "{error_message}"')
+def step_impl(context, error_message):
+    context.login_page.check_error_message_for_empty_field(error_message)
 
 
-# aici in feature, este cu "and", aici pot sa-l pun cu then?
 @then('login: url has not changed')
 def step_impl(context):
     context.login_page.navigate_to_page()
+
+
+@when('login: I click on Ti-ai uitat parola? link')
+def step_impl(context):
+    context.login_page.click_forgot_pass_link()
+
+
+@then('login: I get a success message and I am redirected back to the login page "{expected_login_page_link}"')
+def step_impl(context, expected_login_page_link):
+    context.login_page.verify_login_page(expected_login_page_link)
