@@ -54,5 +54,3 @@ def step_impl(context):
 @then('login: I get a success message and I am redirected back to the login page "{expected_login_page_link}"')
 def step_impl(context, expected_login_page_link):
     context.login_page.verify_login_page(expected_login_page_link)
-
-

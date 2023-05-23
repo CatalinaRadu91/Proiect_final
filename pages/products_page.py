@@ -9,8 +9,9 @@ class ProductPage(BasePage):
     # ADAUGA_IN_COS_BTN = (By.XPATH, '//div[@class="row"]//button')
     ADAUGA_IN_COS_BTN = (By.XPATH, '//div[@class="row"]//button//span')
     # COSUL_MEU_BTN = (By.XPATH, '//div[@class="feature-icon-hover"]//child::a[2]//child::div')
-    COSUL_MEU_BTN = (By.ID, 'mini-cart')
-    COOKIES_BANNER = (By.CLASS_NAME, "cookiespopup-close" )
+    # COSUL_MEU_BTN = (By.ID, 'mini-cart')
+    COSUL_MEU_BTN = (By.XPATH, '//button[@class="button btn-checkout btn-inline"]')
+    COOKIES_BANNER = (By.CLASS_NAME, "cookiespopup-close")
 
     def verify_results_contains_text(self, text):
         title_list = self.driver.find_elements(*self.RESULTS_TITLE)

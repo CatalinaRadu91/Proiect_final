@@ -12,7 +12,7 @@ def before_all(context):
     context.home_page = HomePage()
     context.login_page = LoginPage()
     context.account_page = AccountPage()
-    context.cart_page = CartPage
+    context.cart_page = CartPage()
     context.products_page = ProductPage()
     context.forgot_password_page = ForgotPassword()
 
