@@ -20,3 +20,8 @@ def step_impl(context):
 @then('products: I verify that results contain search query {query}')
 def step_impl(context, query):
     context.products_page.verify_results_contains_text(query)
+
+
+@when('products: I close cookies banner')
+def step_impl(context):
+    context.products_page.close_cookies_banner()

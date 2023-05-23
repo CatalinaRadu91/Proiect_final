@@ -5,10 +5,12 @@ from pages.base_page import BasePage
 
 class ProductPage(BasePage):
     RESULTS_TITLE = (By.XPATH, '//h2[@class="product-name"]')
-    # SELECT_SIZE_BTN = (By.CLASS_NAME, "attr-values-item")
     SELECT_XL_SIZE_BTN = (By.XPATH, '//*[contains(text(), " XL ")]')
-    ADAUGA_IN_COS_BTN = (By.XPATH, '//div[@class="row"]//button')
-    COSUL_MEU_BTN = (By.XPATH, '//div[@class="feature-icon-hover"]//child::a[2]//child::div')
+    # ADAUGA_IN_COS_BTN = (By.XPATH, '//div[@class="row"]//button')
+    ADAUGA_IN_COS_BTN = (By.XPATH, '//div[@class="row"]//button//span')
+    # COSUL_MEU_BTN = (By.XPATH, '//div[@class="feature-icon-hover"]//child::a[2]//child::div')
+    COSUL_MEU_BTN = (By.ID, 'mini-cart')
+    COOKIES_BANNER = (By.CLASS_NAME, "cookiespopup-close" )
 
     def verify_results_contains_text(self, text):
         title_list = self.driver.find_elements(*self.RESULTS_TITLE)
@@ -30,3 +32,6 @@ class ProductPage(BasePage):
 
     def click_cart_btn(self):
         self.wait_and_click_elem_by_selector(*self.COSUL_MEU_BTN)
+
+    def close_cookies_banner(self):
+        self.wait_and_click_elem_by_selector(*self.COOKIES_BANNER)

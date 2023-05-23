@@ -12,6 +12,6 @@ class Browser(unittest.TestCase):
     driver.delete_all_cookies()
     driver.set_page_load_timeout(200)
 
-    def close(self):
+    def clear_cache(self):
         self.driver.delete_all_cookies()
-        self.driver.close()
+        self.driver.refresh()

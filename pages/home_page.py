@@ -21,7 +21,10 @@ class HomePage(BasePage):
         self.driver.get('https://www.zonia.ro/')
 
     def click_accept_notification_btn(self):
-        self.wait_and_click_elem_by_selector(*self.NOTIFICATION_BTN)
+        try:
+            self.wait_and_click_elem_by_selector(*self.NOTIFICATION_BTN)
+        except:
+            pass
 
     def click_contul_meu_btn(self):
         self.wait_and_click_elem_by_selector(*self.CONTUL_MEU_BTN)
